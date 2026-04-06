@@ -38,6 +38,11 @@ The environment was configured using a hybrid architecture for fault isolation:
 | **Actual Behaviour** | The system retrieves the token from Local Storage and redirects the user to the logged-in Dashboard. |
 | **Proposed Fix** | Implement `localStorage.removeItem('token')` or `localStorage.clear()` in the Frontend logout method. |
 
+**Evidence:**
+[🎥 Click here to watch the evidence](./evidence/BUG_001.mp4)
+
+------
+
 | Field | Description |
 | :--- | :--- |
 | **ID** | BUG-002 |
@@ -50,6 +55,11 @@ The environment was configured using a hybrid architecture for fault isolation:
 | **Expected Behaviour** | The request must contain the header `Authorization: Bearer <token>`. |
 | **Actual Behaviour** | API returns `401 Unauthorized` with the message "authorization header required". |
 | **Proposed Fix** | Inject the JWT Token retrieved during login into the headers of all "Invoke" (write) requests. |
+
+**Evidence:**
+[🎥 Click here to watch the evidence](./evidence/BUG_002.mp4)
+
+------
 
 | Field | Description |
 | :--- | :--- |
@@ -64,6 +74,11 @@ The environment was configured using a hybrid architecture for fault isolation:
 | **Actual Behaviour** | Request is sent and returns `404 Not Found (asset not found)`. |
 | **Proposed Fix** | Implement Frontend validation or a dropdown list containing only existing assets from the Ledger. |
 
+**Evidence:**
+[🎥 Click here to watch the evidence](./evidence/BUG_003_e_BUG_004.mp4.mp4)
+
+------
+
 | Field | Description |
 | :--- | :--- |
 | **ID** | BUG-004 |
@@ -76,6 +91,11 @@ The environment was configured using a hybrid architecture for fault isolation:
 | **Expected Behaviour** | The UI should display user-friendly messages based on the specific error (e.g., "Session expired" for 401 errors). |
 | **Actual Behaviour** | A generic message is displayed: "An error occurred. Please try again." |
 | **Proposed Fix** | Create an error mapper to handle HTTP status codes and display specific, actionable feedback to the user. |
+
+**Evidence:**
+[🎥 Click here to watch the evidence](./evidence/BUG_003_e_BUG_004.mp4.mp4)
+
+------
 
 | Field | Description |
 | :--- | :--- |
@@ -90,6 +110,11 @@ The environment was configured using a hybrid architecture for fault isolation:
 | **Actual Behaviour** | The system returns: `{"error":"unable to get args: missing argument 'name'","status":400}`. |
 | **Proposed Fix** | Verify if the payload sent by the Frontend uses the correct key (e.g., `name` vs `libraryName`) as defined in the Chaincode. |
 
+**Evidence:**
+[🎥 Click here to watch the evidence](./evidence/BUG_005.mp4)
+
+------
+
 | Field | Description |
 | :--- | :--- |
 | **ID** | BUG-006 |
@@ -102,6 +127,11 @@ The environment was configured using a hybrid architecture for fault isolation:
 | **Expected Behaviour** | The system should validate the fields and send the request to the Backend. |
 | **Actual Behaviour** | The system freezes with a console error: `Cannot read properties of null (reading 'error')`. |
 | **Proposed Fix** | 1. Implement **Optional Chaining** in response handling to prevent application crashes. 2. Review the **Data Mapping** function of the `/persons` form, as it was identified via the Network tab that the payload is being sent as `null`, indicating a failure in input collection prior to the API call. |
+
+**Evidence:**
+[🎥 Click here to watch the evidence](./evidence/BUG_006.mp4)
+
+------
 
 | Field | Description |
 | :--- | :--- |
@@ -116,7 +146,10 @@ The environment was configured using a hybrid architecture for fault isolation:
 | **Actual Behaviour** | The user sees raw technical code: `{"error": "...", "status": 400}`. |
 | **Proposed Fix** | Implement a parser in the Frontend to extract only the error message from the JSON and display it using a styled UI component. |
 
----
+**Evidence:**
+[🎥 Click here to watch the evidence](./evidence/BUG_007.mp4)
+
+------
 
 ## 🔍 4. Technical Investigation (The Differential)
 
